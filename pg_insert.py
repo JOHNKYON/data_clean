@@ -20,6 +20,8 @@ except:
 cursor = connection.cursor()
 
 count = 0
+count1 = 0
+count2 = 0
 
 '''for line in csv.reader(input_file1, delimiter=str('|')):
     if count == 0:
@@ -28,13 +30,19 @@ count = 0
 
     # try:
     if line[9] != '' or line[8] != '':
-        cursor.execute("""SELECT insert_edu(%s, %s, %s)""", (line[2], line[8], line[9]))
-        connection.commit()
+        try:
+            cursor.execute("""SELECT insert_edu(%s, %s, %s)""", (line[2], line[8], line[9]))
+            connection.commit()
+        except:
+            continue
     else:
         print line[2]
         print line[9]
         print line[8]
-        print 'error'''''
+        print 'data invalid'
+
+count = 0
+print count1'''
 
 for line in csv.reader(input_file2, delimiter=str('|')):
     if count == 0:
@@ -42,14 +50,19 @@ for line in csv.reader(input_file2, delimiter=str('|')):
         continue
 
     # try:
-    if line[9] != '' or line[8] != '':
-        cursor.execute("""SELECT insert_edu(%s, %s, %s)""", (line[2], line[4], line[7]))
-        connection.commit()
+    if line[4] != '' or line[7] != '':
+        try:
+            cursor.execute("""SELECT insert_work(%s, %s, %s)""", (line[2], line[4], line[7]))
+            # print 'succeed'
+            connection.commit()
+        except:
+            print 'failed'
+            continue
     else:
         print line[2]
-        print line[9]
-        print line[8]
-        print 'error'
+        print line[4]
+        print line[7]
+        print 'data invalid'
     # except:
     # print 'Execute Failed'
     # logger.logger.info('Execute Failed.')
