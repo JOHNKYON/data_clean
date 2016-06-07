@@ -13,7 +13,7 @@ input_file2 = codecs.open('./utf8/work_without_dup.txt', 'rb', )
 
 # 建立数据库链接
 try:
-    connection = psycopg2.connect(database="mydb", user="postgres", password="precure", host="127.0.0.1", port="5432")
+    connection = psycopg2.connect(database="mydb", user="postgres", password="postgres", host="127.0.0.1", port="5432")
 except:
     logger.logger.info('Connecting Failed.')
 
